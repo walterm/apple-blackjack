@@ -16,8 +16,14 @@ class Deck:
                 else: self.cards.append(rank+suit)
         Deck.shuffle(self)
 
-    def shuffle(deck):
-        shuffle(deck.cards)
+    def shuffle(self):
+        shuffle(self.cards)
+
+    def drawCard(self):
+        if len(self.cards) == 0:
+            raise RuntimeError("Deck is empty!")
+        return self.cards.pop(0)
+        
          
 
 class TestDeck(unittest.TestCase):
@@ -25,8 +31,13 @@ class TestDeck(unittest.TestCase):
     def setUp(self):
         self.deck = Deck()
 
-    def test_init(self):
+    def testInit(self):
         self.assertEqual(len(self.deck.cards), 52)
+
+    def testDrawCard(self):
+        card = self.deck.drawCard()
+        self.assertEqual(len(self.deck.cards), 51)
+        self.assertEqual(card in self.deck.cards, False)
 
 if __name__ == '__main__':
     unittest.main()
