@@ -8,4 +8,11 @@ class Deck:
     ranks = '234567891JQKA'
     def __init__(self):
         self.cards = []
+        for rank in Deck.ranks:
+            for suit in Deck.suits:
+                if rank == '1':
+                    self.cards.append('10'+suit)
+                else: self.cards.append(rank+suit)
+
+d = Deck()
         
