@@ -1,4 +1,5 @@
-
+from random import shuffle
+import unittest
 class Deck:
     heart = u'\u2661'.encode('utf-8')
     diamond = u'\u2662'.encode('utf-8')
@@ -13,6 +14,21 @@ class Deck:
                 if rank == '1':
                     self.cards.append('10'+suit)
                 else: self.cards.append(rank+suit)
+        Deck.shuffle(self)
 
-d = Deck()
+    def shuffle(deck):
+        shuffle(deck.cards)
+         
+
+class TestDeck(unittest.TestCase):
+
+    def setUp(self):
+        self.deck = Deck()
+
+    def test_init(self):
+        self.assertEqual(len(self.deck.cards), 52)
+
+if __name__ == '__main__':
+    unittest.main()
+
         
