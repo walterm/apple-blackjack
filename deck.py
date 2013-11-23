@@ -49,7 +49,14 @@ class TestDeck(unittest.TestCase):
             self.deck.drawCard()
         except RuntimeError:
             self.deck.refreshDeck()
-        self.assertEqual(len(self.deck.cards), 52)        
+        self.assertEqual(len(self.deck.cards), 52)
+
+    def testPartialShuffle(self):
+        for i in range(48):
+            self.deck.drawCard()
+        self.assertEqual(len(self.deck.cards), 4)
+        self.deck.shuffle()
+        self.assertEqual(len(self.deck.cards), 4)
 
 if __name__ == '__main__':
     unittest.main()
