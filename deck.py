@@ -74,6 +74,14 @@ class TestDeck(unittest.TestCase):
             self.deck.drawCard()
         self.assertEqual(self.deck.numCardsRemaining(), 0)
 
+    def testIsEmpty(self):
+        self.assertEqual(self.deck.isEmpty(), False)
+        self.deck.drawCard()
+        self.assertEqual(self.deck.isEmpty(), False)
+        for i in range(51):
+            self.deck.drawCard()
+        self.assertEquals(self.deck.isEmpty(), True)
+
 if __name__ == '__main__':
     unittest.main()
 
