@@ -27,6 +27,12 @@ class Deck:
         if len(self.cards) == 0:
             raise RuntimeError("Deck is empty!")
         return self.cards.pop(0)
+
+    def numCardsRemaining(self):
+        return len(self.cards)
+
+    def isEmpty(self):
+        return 0 == self.numCardsRemaining()
         
          
 
@@ -57,6 +63,16 @@ class TestDeck(unittest.TestCase):
         self.assertEqual(len(self.deck.cards), 4)
         self.deck.shuffle()
         self.assertEqual(len(self.deck.cards), 4)
+
+    def testNumCardsRemaining(self):
+        self.assertEqual(self.deck.numCardsRemaining(),52)
+        for i in range(10):
+            self.deck.drawCard()
+        self.assertEqual(self.deck.numCardsRemaining(), 42)
+
+        for i in range(42):
+            self.deck.drawCard()
+        self.assertEqual(self.deck.numCardsRemaining(), 0)
 
 if __name__ == '__main__':
     unittest.main()
