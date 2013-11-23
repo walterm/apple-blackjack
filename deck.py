@@ -42,6 +42,14 @@ class TestDeck(unittest.TestCase):
         card = self.deck.drawCard()
         self.assertEqual(len(self.deck.cards), 51)
         self.assertEqual(card in self.deck.cards, False)
+        for i in range(51):
+            self.deck.drawCard()
+        self.assertRaises(RuntimeError, self.deck.drawCard)
+        try:
+            self.deck.drawCard()
+        except RuntimeError:
+            self.deck.refreshDeck()
+        self.assertEqual(len(self.deck.cards), 52)        
 
 if __name__ == '__main__':
     unittest.main()
