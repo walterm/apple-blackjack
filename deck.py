@@ -9,13 +9,17 @@ class Deck:
     ranks = '234567891JQKA'
     def __init__(self):
         self.cards = []
+        self.refreshDeck()
+
+    def refreshDeck(self):
+        self.cards = []
         for rank in Deck.ranks:
             for suit in Deck.suits:
                 if rank == '1':
                     self.cards.append('10'+suit)
                 else: self.cards.append(rank+suit)
         Deck.shuffle(self)
-
+    
     def shuffle(self):
         shuffle(self.cards)
 
